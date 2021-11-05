@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import classes from './MeetupItem.module.css'
 import Card from '../ui/Card';
-import FavoritesContext from '../../store/favorittes-context';
+import FavoritesContext from '../../store/favorites-context';
 
 const MeetupItem = (props) => {
 

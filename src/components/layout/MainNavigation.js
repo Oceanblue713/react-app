@@ -1,11 +1,25 @@
-import { useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import classes from './MainNavigation.module.css';
 import FavoritesContext from '../../store/favorites-context';
+import url from '../../url';
 
 const MainNavigation = () => {
 
   const favoritesCtx = useContext(FavoritesContext);
+  const [allMeetups, setAllMeetups] = useState(0);
+
+  useEffect(() => {
+    getData();
+
+    const getData = async (response) => {
+    const data = await fetch(url);
+    data = data.json();
+  }
+
+
+    console.log(data);
+  }, []);
 
   return (
     <header className={classes.header}>

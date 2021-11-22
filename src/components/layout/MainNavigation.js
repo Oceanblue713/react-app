@@ -11,23 +11,29 @@ const MainNavigation = () => {
 
   useEffect(() => {
     getData();
-
-    const getData = async (response) => {
-    const data = await fetch(url);
-    data = data.json();
-  }
-
-
-    console.log(data);
   }, []);
 
+  const getData = async () => {
+    let data = await fetch(url);
+    let count = 0
+    data = data.json();
+    data.then((value) => {
+      for(const i in value)
+      {
+        const item = value[i]
+        count += 1;
+      }
+    setAllMeetups(count);
+    });
+  }
+  
   return (
     <header className={classes.header}>
       <div className={classes.logo}>React Meetups</div>
       <nav>
         <ul>
           <li>
-            <Link to='/'>All Meetups</Link>
+            <Link to='/'>All Meetups<span className={classes.badge}>{allMeetups}</span></Link>
           </li>
           <li>
             <Link to='/new-meetup'>Add New Meetup</Link>

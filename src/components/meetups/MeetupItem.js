@@ -24,6 +24,10 @@ const MeetupItem = (props) => {
     }
   }
 
+  const toggleDeleteHandler = () => {
+    console.log("Delete");
+  }
+
   return (
     <li className={classes.item}>
       <Card>
@@ -37,6 +41,7 @@ const MeetupItem = (props) => {
         </div>
         <div className={classes.actions}>
           <button onClick={toggleFavoriteStatusHandler}>{itemIsFavorite ? 'Remove from Favorites' : 'To Favorites'}</button>
+          <button onClick={toggleDeleteHandler}>Delete</button>
         </div>
       </Card>
     </li>

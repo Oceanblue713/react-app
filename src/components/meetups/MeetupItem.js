@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import classes from './MeetupItem.module.css'
 import Card from '../ui/Card';
@@ -7,6 +7,7 @@ import FavoritesContext from '../../store/favorites-context';
 const MeetupItem = (props) => {
 
   const favoritesCtx = useContext(FavoritesContext);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const itemIsFavorite = favoritesCtx.itemIsFovorite(props.id);
 
@@ -25,7 +26,16 @@ const MeetupItem = (props) => {
   }
 
   const toggleDeleteHandler = () => {
-    console.log("Delete");
+    if(deleteConfirmationModal === true){
+      setDeleteModalOpen(false);
+    } else {
+      setDeleteModalOpen(true);
+    }
+    
+  }
+
+  const deleteConfirmationModal = () => {
+    <h1>Modal</h1>
   }
 
   return (
@@ -41,7 +51,7 @@ const MeetupItem = (props) => {
         </div>
         <div className={classes.actions}>
           <button onClick={toggleFavoriteStatusHandler}>{itemIsFavorite ? 'Remove from Favorites' : 'To Favorites'}</button>
-          <button onClick={toggleDeleteHandler}>Delete</button>
+          <button onClick={toggleDeleteHandler}>{deleteModalOpen ? deleteConfirmationModal : 'Delete'}</button>
         </div>
       </Card>
     </li>

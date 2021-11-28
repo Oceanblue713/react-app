@@ -26,16 +26,26 @@ const MeetupItem = (props) => {
   }
 
   const toggleDeleteHandler = () => {
-    if(deleteConfirmationModal === true){
+    if(deleteModalOpen){
       setDeleteModalOpen(false);
     } else {
       setDeleteModalOpen(true);
     }
-    
   }
 
-  const deleteConfirmationModal = () => {
-    <h1>Modal</h1>
+  const deleteMeetup = () => {
+    console.log("OK button");
+  }
+
+  let deleteConfirmationModal;
+  if (deleteModalOpen) {
+    deleteConfirmationModal = (
+      <div>
+        <h1>Are you sure to delete this Meetup?</h1>
+        <button onClick={deleteMeetup}>OK</button>
+        <button onClick={toggleDeleteHandler}>NO</button>
+      </div>
+    )
   }
 
   return (
@@ -51,7 +61,8 @@ const MeetupItem = (props) => {
         </div>
         <div className={classes.actions}>
           <button onClick={toggleFavoriteStatusHandler}>{itemIsFavorite ? 'Remove from Favorites' : 'To Favorites'}</button>
-          <button onClick={toggleDeleteHandler}>{deleteModalOpen ? deleteConfirmationModal : 'Delete'}</button>
+          <button onClick={toggleDeleteHandler}>Delete</button>
+          {deleteConfirmationModal}
         </div>
       </Card>
     </li>

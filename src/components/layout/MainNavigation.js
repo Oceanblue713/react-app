@@ -2,11 +2,13 @@ import { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import classes from './MainNavigation.module.css';
 import FavoritesContext from '../../store/favorites-context';
+import MeetupsContext from '../../store/meetups-context';
 import url from '../../url';
 
 const MainNavigation = () => {
 
   const favoritesCtx = useContext(FavoritesContext);
+  const allMeetupsCtx = useContext(MeetupsContext);
   const [allMeetups, setAllMeetups] = useState(0);
 
   useEffect(() => {

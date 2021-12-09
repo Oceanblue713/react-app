@@ -1,11 +1,13 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import url from '../../url';
 
 const MeetupsContext = createContext({
-  allMeetups: []
+  allMeetups: [],
+  totalMeetups: 0
 });
 
-const MeetupsProvider = () => {
+const MeetupsProvider = (props) => {
+
   const [allMeetups, setAllMeetups] = useState([]);
 
   useEffect(() => {
@@ -15,6 +17,17 @@ const MeetupsProvider = () => {
   const getAllMeetups = async () => {
     let data = await fetch(url);
     let allData = data.json();
-    console.log(allData);
+    setAllMeetups(allData);
   }
+
+  const meetupsData = {
+    allMeetups: allMeetups,
+    totalMeetups: allMeetups.length
+  }
+
+  return <MeetupsContext.Provider value={meetupsData}>
+    {props.children}
+  </MeetupsContext.Provider>
 }
+
+export default MeetupsContext;

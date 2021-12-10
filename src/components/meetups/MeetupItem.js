@@ -3,6 +3,7 @@ import { useContext, useState } from 'react';
 import classes from './MeetupItem.module.css'
 import Card from '../ui/Card';
 import FavoritesContext from '../../store/favorites-context';
+import {Link} from 'react-router-dom';
 
 const MeetupItem = (props) => {
 
@@ -42,7 +43,7 @@ const MeetupItem = (props) => {
     deleteConfirmationModal = (
       <div>
         <h1>Are you sure to delete this Meetup?</h1>
-        <button onClick={deleteMeetup}>OK</button>
+        <button onClick={deleteMeetup}><Link to="/">OK</Link></button>
         <button onClick={toggleDeleteHandler}>NO</button>
       </div>
     )
